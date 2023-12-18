@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Define the SRV record to resolve
+SRV_RECORD=$1
+
+# Resolve the SRV record and store the result
+SRV_RESULT=$(dig +short SRV "$SRV_RECORD")
+
+# Extract the target host and port from the result
+HOST=$(echo "$SRV_RESULT" | awk '{print $4}')
+PORT=$(echo "$SRV_RESULT" | awk '{print $3}')
+
+# Check if the resolution was successful
+if [ -z "$HOST" ] || [ -z "$PORT" ]; then
+  echo "DNS SRV resolution failed."
+  exit 1
+fi
+
+# Define the HTTP endpoint
+ENDPOINT=$2
+
+# Make an HTTP request using curl
+curl "http://$HOST:$PORT$ENDPOINT"
