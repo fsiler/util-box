@@ -10,7 +10,7 @@ RUN apt-get update && \
     curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor > hashicorp.gpg && \
     install -o root -g root -m 644 hashicorp.gpg /etc/apt/trusted.gpg.d/ && \
     apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main" && \
-    apt-get install terraform -y && \
+    apt-get install terraform consul-template -y && \
     curl https://dl.min.io/client/mc/release/linux-amd64/mc \
       --create-dirs \
       -o /usr/local/bin/mc && \
