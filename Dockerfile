@@ -4,6 +4,12 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y tzdata && \
 # courtesy https://dev.to/0xbf/set-timezone-in-your-docker-image-d22
+    apt-get install -y iputils-ping && \
+    apt-get install -y jq && \
+    apt-get install -y apt-transport-https && \
+    apt-get install -y lsb-release && \
+    apt-get install -y wget && \
+    apt-get install -y gnupg && \
     dpkg-reconfigure -f noninteractive tzdata && \
     ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime && \
     apt-get install -y gnupg software-properties-common wget curl jq postgresql-client dnsutils acl && \
